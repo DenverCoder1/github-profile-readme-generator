@@ -4,7 +4,7 @@
   </a>
 </p>
 <h1 align="center">
-  GitHub Profile Readme Generator
+  GitHub Profile README Generator
 </h1>
 
 <p align="center">
@@ -23,8 +23,8 @@
 <a href="https://github.com/rahuldkjain/github-profile-readme-generator/pulls" target="blank">
 <img src="https://img.shields.io/github/issues-pr/rahuldkjain/github-profile-readme-generator?style=flat-square" alt="github-profile-readme-generator pull-requests"/>
 </a>
-<a href="https://discord.gg/U7YU3J" target="blank">
-<img src="https://img.shields.io/discord/735303195105951764?color=%23677BC4&label=Join%20Community&style=flat-square" alt="join discord community of github profile readme generator"/>
+<a href="https://discord.gg/HHMs7Eg" target="blank">
+<img src="https://img.shields.io/discord/735303195105951764?label=Join%20Community&logo=discord&style=flat-square" alt="join discord community of github profile readme generator"/>
 </a>
 </p>
 
@@ -39,25 +39,55 @@
 </p>
 
 <p align="center">
-<i>Loved the tool? Please consider <a href="https://paypal.me/rahuldkjain">donating</a>  💸 to help it improve!</i>
+<i>Loved the tool? Please consider <a href="https://paypal.me/rahuldkjain/10">donating</a>  💸 to help it improve!</i>
+</p>
+
+<p align="center">
+<a href="https://www.paypal.me/rahuldkjain"><img src="https://img.shields.io/badge/support-PayPal-blue?logo=PayPal&style=flat-square&label=Donate" alt="sponsor github profile readme generator"/>
+</a>
+<a href='https://ko-fi.com/A0A81XXSX' target='_blank'><img height='23' width="100" src='https://cdn.ko-fi.com/cdn/kofi3.png?v=2' alt='Buy Coffee for rahuldkjain' />
+</a>
+<a href="https://www.buymeacoffee.com/rahuldkjain" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="23" width="100" style="border-radius:1px" />
 </p>
 
 #### Tired of editing GitHub Profile README with new features?
 
-This tool provides an easy way to create github profile readme with latest addons like `visitors count`, `github stats` etc.
+This tool provides an easy way to create a GitHub profile readme with the latest add-ons such as `visitors count`, `github stats`, etc.
 
-#### 🚀 Try it out: [Live demo](https://rahuldkjain.github.io/gh-profile-readme-generator)
+
+## 🚀 Demo 
+<a href="https://rahuldkjain.github.io/gh-profile-readme-generator" target="blank">
+<img src="https://img.shields.io/website?url=https%3A%2F%2Frahuldkjain.github.io%2Fgh-profile-readme-generator&logo=github&style=flat-square" />
+</a>
+
+Try the tool: [GitHub Profile README Generator](https://rahuldkjain.github.io/gh-profile-readme-generator)
 
 ## 🧐 Features
 
-Just fill the details like `Name`, `Tagline`, `Dev Platforms Username`, `Current Work`, `Portfolio`, `Blog` etc. with a minimal UI.
+Just fill in the details such as `Name`, `Tagline`, `Dev Platforms Username`, `Current Work`, `Portfolio`, `Blog`, etc. with a minimal UI.
+
+- **Uniform Dev Icons**
+
+- **Uniform Social Icons**
+
+- **Visitors Counter Badge**
+
+- **GitHub Profile Stats Card**
+
+- **GitHub Top Skills**
+
+- **Dynamic Dev(.)to Blogs** (GitHub Action)
+
+- **Dynamic Medium Blogs** (GitHub Action)
+
+- **Dynamic Personal Blogs from RSS Feed** (GitHub Action)
+
+- **Wakatime Stats** [contribute](https://github.com/rahuldkjain/github-profile-readme-generator/issues/115)
 
 Click on `Generate README` to get your README in `markdown`.
 You can preview the README too.
 
-You can add latest addons like `visitors count`, `shields`, `dev icons`, `github stats` etc to your README in just one click.
-
-## Installation Steps
+## 🛠️ Installation Steps
 
 1. Clone the repository
 
@@ -85,22 +115,34 @@ npm start
 
 🌟 You are all set!
 
-## Special Thanks 🙇
+## 🍰 Contributing
+
+Please contribute using [GitHub Flow](https://guides.github.com/introduction/flow). Create a branch, add commits, and [open a pull request](https://github.com/rahuldkjain/github-profile-readme-generator/compare).
+
+Please read [`CONTRIBUTING`](CONTRIBUTING.md) for details on our [`CODE OF CONDUCT`](CODE_OF_CONDUCT.md), and the process for submitting pull requests to us.
+
+## 💻 Built with
+- [Gatsby](https://www.gatsbyjs.com/)
+- [Tailwind CSS](https://tailwindcss.com/): for styling
+- [GSAP](https://greensock.com/gsap/): for small SVG Animations
+
+
+## 🙇 Special Thanks
 
 - [Anurag Hazra](https://github.com/anuraghazra) for amazing [github-readme-stats](https://github.com/anuraghazra/github-readme-stats)
 - [Anton Komarev](https://github.com/antonkomarev) for super cool [github-profile-views-counter](https://github.com/antonkomarev/github-profile-views-counter)
 - [Gautam Krishna R](https://github.com/gautamkrishnar) for the awesome [blog post workflow](https://github.com/gautamkrishnar/blog-post-workflow)
 - [Julien Monty](https://github.com/konpa) for super useful [devicon](https://github.com/konpa/devicon)
 
-## Sponsors 🙇
+## 🙇 Sponsors
 
-- [Scott C Wilson](https://github.com/scottcwilson) donated the first ever grant to this tool. A big thanks to him.
-- [Max Schmitt](https://github.com/mxschmitt) loved the tool and showed the support with his donation. Thanks a lot.
+- [Scott C Wilson](https://github.com/scottcwilson) donated the first-ever grant to this tool. A big thanks to him.
+- [Max Schmitt](https://github.com/mxschmitt) loved the tool and showed support with his donation. Thanks a lot.
 
-## Support 🙏
+## 🙏 Support
 
 <p align="left">
-<a href="https://www.paypal.me/rahuldkjain"><img src="https://ionicabizau.github.io/badges/paypal.svg" alt="sponsor github profile readme generator"/>
+<a href="https://www.paypal.me/rahuldkjain/10"><img src="https://ionicabizau.github.io/badges/paypal.svg" alt="sponsor github profile readme generator"/>
 </a>
 <a href="https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Frahuldkjain.github.io%2Fgithub-profile-readme-generator">
 <img src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Frahuldkjain.github.io%2Fgithub-profile-readme-generator" alt="tweet github profile readme generator"/>
@@ -112,6 +154,33 @@ npm start
   </a>
   <a href="https://www.buymeacoffee.com/rahuldkjain" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="23" width="100" style="border-radius:2px" />
 </p>
+
+## Contributors ✨
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/sarbikbetal"><img src="https://avatars2.githubusercontent.com/u/41508422?v=4" width="100px;" alt=""/><br /><sub><b>Sarbik Betal</b></sub></a><br /><a href="https://github.com/rahuldkjain/github-profile-readme-generator/commits?author=sarbikbetal" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Hardik0307"><img src="https://avatars3.githubusercontent.com/u/41434099?v=4" width="100px;" alt=""/><br /><sub><b>Hardik Bagada</b></sub></a><br /><a href="https://github.com/rahuldkjain/github-profile-readme-generator/commits?author=Hardik0307" title="Code">💻</a></td>
+    <td align="center"><a href="https://komarev.com"><img src="https://avatars0.githubusercontent.com/u/1849174?v=4" width="100px;" alt=""/><br /><sub><b>Anton Komarev</b></sub></a><br /><a href="#plugin-antonkomarev" title="Plugin/utility libraries">🔌</a></td>
+    <td align="center"><a href="https://kkvanonymous.github.io/"><img src="https://avatars3.githubusercontent.com/u/58628586?v=4" width="100px;" alt=""/><br /><sub><b>Kunal Kumar Verma</b></sub></a><br /><a href="https://github.com/rahuldkjain/github-profile-readme-generator/commits?author=KKVANONYMOUS" title="Code">💻</a></td>
+    <td align="center"><a href="http://jaideepghosh.blogspot.com"><img src="https://avatars2.githubusercontent.com/u/3909648?v=4" width="100px;" alt=""/><br /><sub><b>Jaideep Ghosh</b></sub></a><br /><a href="https://github.com/rahuldkjain/github-profile-readme-generator/commits?author=jaideepghosh" title="Code">💻</a></td>
+    <td align="center"><a href="http://yashkandalkar.github.io"><img src="https://avatars0.githubusercontent.com/u/35102959?v=4" width="100px;" alt=""/><br /><sub><b>yash</b></sub></a><br /><a href="https://github.com/rahuldkjain/github-profile-readme-generator/commits?author=YashKandalkar" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/abhijit-hota"><img src="https://avatars0.githubusercontent.com/u/8116174?v=4" width="100px;" alt=""/><br /><sub><b>Abhijit Hota</b></sub></a><br /><a href="https://github.com/rahuldkjain/github-profile-readme-generator/commits?author=abhijit-hota" title="Code">💻</a> <a href="https://github.com/rahuldkjain/github-profile-readme-generator/commits?author=abhijit-hota" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://maddoxx88.github.io/"><img src="https://avatars1.githubusercontent.com/u/34238672?v=4" width="100px;" alt=""/><br /><sub><b>Sunit Shirke</b></sub></a><br /><a href="https://github.com/rahuldkjain/github-profile-readme-generator/commits?author=Maddoxx88" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.gsavitha.in"><img src="https://avatars0.githubusercontent.com/u/31612459?v=4" width="100px;" alt=""/><br /><sub><b>Savitha Gollamudi</b></sub></a><br /><a href="https://github.com/rahuldkjain/github-profile-readme-generator/commits?author=g-savitha" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 <hr>
 <p align="center">

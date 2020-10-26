@@ -1,6 +1,10 @@
 import React from "react"
 import { isMediumUsernameValid } from "../utils/validation"
-import { icons, skills } from "../constants/skills"
+import { icons, skills, skillWebsites } from "../constants/skills"
+import {
+  githubStatsLinkGenerator,
+  topLanguagesLinkGenerator,
+} from "../utils/link-generators"
 
 const Markdown = props => {
   const Title = props => {
@@ -20,6 +24,17 @@ const Markdown = props => {
         <>
           {`<h3 align="center">${props.subtitle}</h3>`}
           <br />
+          <br />
+        </>
+      )
+    }
+    return ""
+  }
+  const SectionTitle = props => {
+    if (props.label) {
+      return (
+        <>
+          {`<h3 align="left">${props.label}</h3>`}
           <br />
         </>
       )
@@ -61,7 +76,7 @@ const Markdown = props => {
     if (props.username) {
       return (
         <>
-          {`<a href="${props.base}/${props.username}" target="blank"><img align="center" src="${props.icon}" alt="${props.username}" height="30" width="30" /></a>`}
+          {`<a href="${props.base}/${props.username}" target="blank"><img align="center" src="${props.icon}" alt="${props.username}" height="30" width="40" /></a>`}
           <br />
         </>
       )
@@ -69,7 +84,12 @@ const Markdown = props => {
     return ""
   }
   const VisitorsBadge = props => {
-    let link = "https://komarev.com/ghpvc/?username=" + props.github
+    let link =
+      "https://komarev.com/ghpvc/?username=" +
+      props.github +
+      `&label=${props.badgeOptions.badgeLabel}` +
+      `&color=${props.badgeOptions.badgeColor}` +
+      `&style=${props.badgeOptions.badgeStyle}`
     if (props.show) {
       return (
         <>
@@ -81,15 +101,44 @@ const Markdown = props => {
     }
     return ""
   }
-  const GitHubStats = props => {
+  const TwitterBadge = props => {
     let link =
-      "https://github-readme-stats.vercel.app/api?username=" +
-      props.github +
-      "&show_icons=true"
+      "https://img.shields.io/twitter/follow/" +
+      props.twitter +
+      "?logo=twitter&style=for-the-badge"
     if (props.show) {
       return (
         <>
-          {`<p>&nbsp;<img align="center" src="${link}" alt="${props.github}" /></p>`}
+          {`<p align="left"> <a href="${props.base}/${props.twitter}" target="blank"><img src="${link}" alt="${props.twitter}" /></a> </p>`}
+          <br />
+          <br />
+        </>
+      )
+    }
+    return ""
+  }
+  const GithubProfileTrophy = props => {
+    let link =
+      "https://github-profile-trophy.vercel.app/?username=" + props.github
+    if (props.show) {
+      return (
+        <>
+          {`<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="${link}" alt="${props.github}" /></a> </p>`}
+          <br />
+          <br />
+        </>
+      )
+    }
+    return ""
+  }
+  const GitHubStats = ({ show, github, options }) => {
+    if (show) {
+      return (
+        <>
+          {`<p>&nbsp;<img align="center" src="${githubStatsLinkGenerator({
+            github: github,
+            options,
+          })}" alt="${github}" /></p>`}
           <br />
           <br />
         </>
@@ -119,6 +168,7 @@ const Markdown = props => {
       social.topcoder ||
       social.hackerearth ||
       social.geeks_for_geeks ||
+      social.discord ||
       social.rssurl
     )
   }
@@ -127,12 +177,17 @@ const Markdown = props => {
     skills.forEach(skill => {
       if (props.skills[skill]) {
         listChosenSkills.push(
-          `<img src="${icons[skill]}" alt="${skill}" width="40" height="40"/>`
+          `
+          <a href="${skillWebsites[skill]}" target="_blank">
+            <img src="${icons[skill]}" alt="${skill}" width="40" height="40"/>
+          </a>
+          `
         )
       }
     })
     return listChosenSkills.length > 0 ? (
       <>
+        <SectionTitle label="Languages and Tools:" />
         {`<p align="left">${listChosenSkills.join(" ")}</p>`}
         <br />
         <br />
@@ -157,15 +212,14 @@ const Markdown = props => {
     return ""
   }
   const DisplayTopLanguages = props => {
-    let link =
-      "https://github-readme-stats.vercel.app/api/top-langs/?username=" +
-      props.github +
-      "&layout=compact"
     if (props.show) {
       if (!props.showStats) {
         return (
           <>
-            {`<p><img align="center" src="${link}" alt="${props.github}" /></p>`}
+            {`<p><img align="center" src="${topLanguagesLinkGenerator({
+              github: props.github,
+              options: props.options,
+            })}" alt="${props.github}" /></p>`}
             <br />
             <br />
           </>
@@ -173,7 +227,10 @@ const Markdown = props => {
       }
       return (
         <>
-          {`<p><img align="left" src="${link}" alt="${props.github}" /></p>`}
+          {`<p><img align="left" src="${topLanguagesLinkGenerator({
+            github: props.github,
+            options: props.options,
+          })}" alt="${props.github}" /></p>`}
           <br />
           <br />
         </>
@@ -193,6 +250,22 @@ const Markdown = props => {
         <VisitorsBadge
           show={props.data.visitorsBadge}
           github={props.social.github}
+          badgeOptions={{
+            badgeLabel: encodeURI(props.data.badgeLabel),
+            badgeColor: props.data.badgeColor,
+            badgeStyle: props.data.badgeStyle,
+          }}
+        />
+      </>
+      <>
+        <GithubProfileTrophy
+          show={props.data.githubProfileTrophy}
+          github={props.social.github}
+        />
+        <TwitterBadge
+          base="https://twitter.com"
+          show={props.data.twitterBadge}
+          twitter={props.social.twitter}
         />
       </>
       <>
@@ -241,6 +314,9 @@ const Markdown = props => {
         />
       </>
       <>
+        <DisplayWork prefix={props.prefix.resume} link={props.link.resume} />
+      </>
+      <>
         <DisplayWork
           prefix={props.prefix.funFact}
           project={props.data.funFact}
@@ -257,23 +333,15 @@ const Markdown = props => {
           }
         />
       </>
-      <>
-        <DisplaySkills skills={props.skills} />
-      </>
-      <>
-        <DisplayTopLanguages
-          show={props.data.topLanguages}
-          showStats={props.data.githubStats}
-          github={props.social.github}
-        />
-      </>
-      <>
-        <GitHubStats
-          show={props.data.githubStats}
-          github={props.social.github}
-        />
-      </>
-      {isSocial(props.social) ? `<p align="center">` : ""} <br />
+      {isSocial(props.social) ? (
+        <>
+          <SectionTitle label="Connect with me:" />
+          {`<p align="left">`}
+        </>
+      ) : (
+        ""
+      )}
+      <br />
       <>
         <DisplaySocial
           base="https://codepen.io"
@@ -416,14 +484,46 @@ const Markdown = props => {
       </>
       <>
         <DisplaySocial
+          base="https://discord.gg"
+          icon="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/discord.svg"
+          username={props.social.discord}
+        />
+      </>
+      <>
+        <DisplaySocial
           base=""
           icon="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/rss.svg"
           username={props.social.rssurl}
         />
       </>
-      {isSocial(props.social) ? `</p>` : ""}
+      {isSocial(props.social) ? (
+        <>
+          {`</p>`}
+          <br />
+          <br />
+        </>
+      ) : (
+        ""
+      )}
+      <>
+        <DisplaySkills skills={props.skills} />
+      </>
+      <>
+        <DisplayTopLanguages
+          show={props.data.topLanguages}
+          showStats={props.data.githubStats}
+          github={props.social.github}
+          options={props.data.topLanguagesOptions}
+        />
+      </>
+      <>
+        <GitHubStats
+          show={props.data.githubStats}
+          github={props.social.github}
+          options={props.data.githubStatsOptions}
+        />
+      </>
     </div>
   )
 }
-
 export default Markdown

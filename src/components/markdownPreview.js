@@ -1,5 +1,9 @@
 import React from "react"
-import { icons, skills } from "../constants/skills"
+import { icons, skills, skillWebsites } from "../constants/skills"
+import {
+  githubStatsLinkGenerator,
+  topLanguagesLinkGenerator,
+} from "../utils/link-generators"
 
 const MarkdownPreview = props => {
   const TitlePreview = props => {
@@ -15,6 +19,13 @@ const MarkdownPreview = props => {
   const SubTitlePreview = props => {
     if (props.subtitle) {
       return <h3 className="text-center font-medium">{props.subtitle}</h3>
+    }
+    return null
+  }
+  const SectionTitle = props => {
+    if (!props.visible) return null
+    else if (props.label) {
+      return <h3 className="w-full text-lg sm:text-xl">{props.label}</h3>
     }
     return null
   }
@@ -83,6 +94,7 @@ const MarkdownPreview = props => {
         <DisplayWork prefix={prefix.ama} project={data.ama} />
         <DisplayWork prefix={prefix.portfolio} link={link.portfolio} />
         <DisplayWork prefix={prefix.blog} link={link.blog} />
+        <DisplayWork prefix={prefix.resume} link={link.resume} />
         <DisplayWork prefix={prefix.contact} project={data.contact} />
         <DisplayWork prefix={prefix.funFact} project={data.funFact} />
       </>
@@ -103,8 +115,13 @@ const MarkdownPreview = props => {
     return null
   }
   const SocialPreview = props => {
+    let viewSocial = false
+    Object.keys(props.social).forEach(key => {
+      if (props.social[key] && key != "github") viewSocial = true
+    })
     return (
-      <div className="flex justify-center items-end">
+      <div className="flex justify-start items-end flex-wrap">
+        <SectionTitle label="Connect with me:" visible={viewSocial} />
         <DisplaySocial
           base="https://codepen.io"
           icon="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/codepen.svg"
@@ -207,6 +224,11 @@ const MarkdownPreview = props => {
           username={props.social.leetcode}
         />
         <DisplaySocial
+          base="https://discord.gg"
+          icon="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/discord.svg"
+          username={props.social.discord}
+        />
+        <DisplaySocial
           base=""
           icon="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/rss.svg"
           username={props.social.rssurl}
@@ -215,7 +237,12 @@ const MarkdownPreview = props => {
     )
   }
   const VisitorsBadgePreview = props => {
-    let link = "https://komarev.com/ghpvc/?username=" + props.github
+    let link =
+      "https://komarev.com/ghpvc/?username=" +
+      props.github +
+      `&label=${props.badgeOptions.badgeLabel}` +
+      `&color=${props.badgeOptions.badgeColor}` +
+      `&style=${props.badgeOptions.badgeStyle}`
     if (props.show) {
       return (
         <div className="text-left my-2">
@@ -226,29 +253,60 @@ const MarkdownPreview = props => {
     }
     return null
   }
-  const GitHubStatsPreview = props => {
+  const TwitterBadgePreview = props => {
     let link =
-      "https://github-readme-stats.vercel.app/api?username=" +
-      props.github +
-      "&show_icons=true"
+      "https://img.shields.io/twitter/follow/" +
+      props.twitter +
+      "?logo=twitter&style=for-the-badge"
     if (props.show) {
       return (
-        <div className="text-center mx-4 mb-4">
-          <img src={link} alt={props.github} />
+        <div className="text-left my-2">
+          {" "}
+          <a href="https://twitter.com/${props.twitter}" target="blank">
+            <img className="h-4 sm:h-6" src={link} alt={props.twitter} />
+          </a>{" "}
         </div>
       )
     }
     return null
   }
-  const TopLanguagesPreview = props => {
+  const GithubProfileTrophyPreview = props => {
     let link =
-      "https://github-readme-stats.vercel.app/api/top-langs/?username=" +
-      props.github +
-      "&layout=compact"
+      "https://github-profile-trophy.vercel.app/?username=" + props.github
     if (props.show) {
       return (
+        <div className="text-left my-2">
+          {" "}
+          <a href="https://github.com/ryo-ma/github-profile-trophy">
+            <img src={link} alt={props.github} />
+          </a>{" "}
+        </div>
+      )
+    }
+    return null
+  }
+
+  const GitHubStatsPreview = ({ github, options, show }) => {
+    if (show) {
+      return (
         <div className="text-center mx-4 mb-4">
-          <img src={link} alt={props.github} />
+          <img
+            src={githubStatsLinkGenerator({ github, options })}
+            alt={github}
+          />
+        </div>
+      )
+    }
+    return null
+  }
+  const TopLanguagesPreview = ({ github, options, show }) => {
+    if (show) {
+      return (
+        <div className="text-center mx-4 mb-4">
+          <img
+            src={topLanguagesLinkGenerator({ github, options })}
+            alt={props.github}
+          />
         </div>
       )
     }
@@ -259,17 +317,20 @@ const MarkdownPreview = props => {
     skills.forEach(skill => {
       if (props.skills[skill]) {
         listSkills.push(
-          <img
-            className="my-4 mx-4 h-6 w-6 sm:h-10 sm:w-10"
-            key={skill}
-            src={icons[skill]}
-            alt={skill}
-          />
+          <a href={skillWebsites[skill]} target="_blank" rel="noreferrer">
+            <img
+              className="mb-4 mr-4 h-6 w-6 sm:h-10 sm:w-10"
+              key={skill}
+              src={icons[skill]}
+              alt={skill}
+            />
+          </a>
         )
       }
     })
     return listSkills.length > 0 ? (
       <div className="flex flex-wrap justify-start items-center">
+        <SectionTitle label="Languages and Tools:" visible={true} />
         {listSkills}
       </div>
     ) : (
@@ -283,20 +344,35 @@ const MarkdownPreview = props => {
       <VisitorsBadgePreview
         show={props.data.visitorsBadge}
         github={props.social.github}
+        badgeOptions={{
+          badgeLabel: encodeURI(props.data.badgeLabel),
+          badgeColor: props.data.badgeColor,
+          badgeStyle: props.data.badgeStyle,
+        }}
+      />
+      <GithubProfileTrophyPreview
+        show={props.data.githubProfileTrophy}
+        github={props.social.github}
+      />
+      <TwitterBadgePreview
+        show={props.data.twitterBadge}
+        twitter={props.social.twitter}
       />
       <WorkPreview work={props} />
+      <SocialPreview social={props.social} />
       <SkillsPreview skills={props.skills} />
       <div className="block sm:flex sm:justify-center sm:items-start">
         <TopLanguagesPreview
           show={props.data.topLanguages}
           github={props.social.github}
+          options={props.data.topLanguagesOptions}
         />
         <GitHubStatsPreview
           show={props.data.githubStats}
           github={props.social.github}
+          options={props.data.githubStatsOptions}
         />
       </div>
-      <SocialPreview social={props.social} />
     </div>
   )
 }
